@@ -1,0 +1,16 @@
+{
+  "name": "flixflexmovies",
+  "version": "1.0.0",
+  "description": "Creation of the backend of a movie app flix flex",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.1"
+  }
+}
