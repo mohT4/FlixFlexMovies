@@ -1,0 +1,2 @@
+exports.getAllSeries = () => {};
+exports.getSerie = () => {};

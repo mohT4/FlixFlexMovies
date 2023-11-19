@@ -1,0 +1,3 @@
+exports.getAllMovies = () => {};
+
+exports.getMovie = () => {};

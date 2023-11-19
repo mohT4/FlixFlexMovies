@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const joi = require('jou');
+const joi = require('joi');
 const userSchema = mongoose.Schema(
   {
     name: String,
