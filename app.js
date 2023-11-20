@@ -9,7 +9,7 @@ const logger = require('./middlewares/logger/logger');
 
 const userRouter = require('./routes/userRouter');
 const moviesRouter = require('./routes/moviesRouter');
-const seriesRouter = require('./routes/seriesRouter');
+const tvShowesRouter = require('./routes/tvShowesRouter');
 
 dotenv.config();
 const app = express();
@@ -21,7 +21,7 @@ app.use(httplogger);
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', moviesRouter);
-app.use('/api/v1/series', seriesRouter);
+app.use('/api/v1/tvshows', tvShowesRouter);
 
 app.use('*', (req, res, next) => {
   next(new AppError(400, `can't find ${req.originalUrl}`));
