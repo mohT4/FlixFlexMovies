@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const AppError = require('../utils/AppError');
 const sendMail = require('../utils/email');
 
-const signToken = () => {
+const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWTSECRET, {
-    expiresIn: process.env.JWT_EXPIRESIN,
+    expiresIn: process.env.JWTEXPIRESIN,
   });
 };
 
@@ -43,6 +43,7 @@ exports.logIn = catchAsync(async (req, res, next) => {
   if (!user || !(await user.comparePassword(password, user.password)))
     return next(new AppError(400, 'wrong email or password'));
 
+  user.password = undefined;
   //send data and token to client
   const token = signToken(user._id);
   res.status(200).json({

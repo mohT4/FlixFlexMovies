@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const joi = require('joi');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const AppError = require('../utils/AppError');
 
 const userSchema = mongoose.Schema(
   {
     name: String,
     email: {
       type: String,
-      unique: true,
+      unique: [true, 'this Email is already in use'],
     },
     password: {
       type: String,
@@ -38,14 +39,14 @@ userSchema.pre('save', async function (next) {
     name: joi.string().required(),
     email: joi.string().required().email(),
     password: joi.string().required(),
-    _passwordConfirmation: joi
+    passwordConfirmation: joi
       .string()
       .valid(joi.ref('password'))
       .required()
       .messages({ 'any.only': 'password do not match' }),
   });
 
-  await Schema.validate(userObject);
+  await Schema.validateAsync(userObject);
   next();
 });
 
