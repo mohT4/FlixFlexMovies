@@ -1,13 +1,13 @@
-const catchAsync = require('../utils/catchAsync');
 const axios = require('axios');
+const catchAsync = require('../utils/catchAsync');
 
-//get all the popular movies in diffrent pages, with 10 results per page
-exports.getAllMovies = catchAsync(async (req, res, next) => {
-  const page = req.query.page || 1;
+//get all the popular Tv shows in diffrent pages, with 10 results per page
+exports.getAllTvShows = catchAsync(async (req, res, next) => {
+  const page = req.query.page;
 
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}&limit=10`,
+    url: 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1',
     headers: {
       accept: 'application/json',
       Authorization:
@@ -17,24 +17,24 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
 
   const response = await axios.request(options);
 
-  let movies = response.data.results;
-  movies.length = 10;
+  let tvShows = response.data.results;
+  tvShows.length = 10;
 
   res.status(200).json({
-    stauts: 'success',
+    status: 'success',
     data: {
       page: page,
-      results: movies.length,
-      moveis: movies,
+      results: tvShows.length,
+      tvShows: tvShows,
     },
   });
 });
 
-//get the top 5 rated movies
-exports.getTopRated = catchAsync(async (req, res, next) => {
+//get the top 5 rated Tv Shows
+exports.getTopTvShows = catchAsync(async (req, res, next) => {
   const options = {
     method: 'GET',
-    url: 'https://api.themoviedb.org/3/movie/top_rated?language=en-US',
+    url: 'https://api.themoviedb.org/3/tv/top_rated?language=en-US',
     headers: {
       accept: 'application/json',
       Authorization:
@@ -46,20 +46,20 @@ exports.getTopRated = catchAsync(async (req, res, next) => {
   const movies = response.data.results.slice(0, 5);
 
   res.status(200).json({
-    status: 'sucess',
+    status: 'success',
     data: {
       results: movies.length,
-      movies,
+      movies: movies,
     },
   });
 });
 
-//search for a movie by title
-exports.getMovies = catchAsync(async (req, res, next) => {
-  const movieTitle = req.query.name;
+//search for a T byv show title
+exports.getTvShows = catchAsync(async (req, res, next) => {
+  const tvTitle = req.query.name;
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US`,
+    url: `https://api.themoviedb.org/3/search/tv?query=${tvTitle}&include_adult=false&language=en-US&`,
     headers: {
       accept: 'application/json',
       Authorization:
@@ -68,12 +68,12 @@ exports.getMovies = catchAsync(async (req, res, next) => {
   };
 
   const response = await axios.request(options);
-  const movie = response.data.results;
+  const tvShow = response.data.results;
 
   res.status(200).json({
     status: 'success',
     data: {
-      movie: movie,
+      tvShow: tvShow,
     },
   });
 });

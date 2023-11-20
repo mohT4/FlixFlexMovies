@@ -1,2 +1,0 @@
-exports.getAllSeries = () => {};
-exports.getSerie = () => {};
