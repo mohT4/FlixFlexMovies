@@ -56,10 +56,13 @@ exports.getTopTvShows = catchAsync(async (req, res, next) => {
 
 //search for a Tv show by title
 exports.getTvShows = catchAsync(async (req, res, next) => {
+  //we get the tv title and year from req.query
   const tvTitle = req.query.name;
+  const year = req.query.year;
+
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/search/tv?query=${tvTitle}&include_adult=false&language=en-US&`,
+    url: `https://api.themoviedb.org/3/search/tv?query=${tvTitle}&include_adult=false&language=en-US&yea=${year}`,
     headers: {
       accept: 'application/json',
       Authorization:

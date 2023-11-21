@@ -60,9 +60,11 @@ exports.getTopRated = catchAsync(async (req, res, next) => {
 exports.getMovies = catchAsync(async (req, res, next) => {
   //get the movie title from query
   const movieTitle = req.query.name;
+  const year = req.query.year;
+
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US`,
+    url: `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US&year=${year}`,
     headers: {
       accept: 'application/json',
       Authorization:
