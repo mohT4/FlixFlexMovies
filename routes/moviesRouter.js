@@ -7,8 +7,25 @@ const router = express.Router();
 
 router.use('/favorites', favoriteMoviesRouter);
 
-router.route('/popular', moviesController.getAllMovies);
-router.get('/top5rated', moviesController.getTopRated);
-router.get('/search', moviesController.getMovies);
+//main movies route
+router.get('/', authController.protect, moviesController.getAllMovies);
+
+//top 5 rated movies routes
+router.get('/top5rated', authController.protect, moviesController.getTopRated);
+
+//search route
+router.get('/search', authController.protect, moviesController.getMovies);
+
+//nested routes for gettin a movie's trailer and details
+router.get(
+  '/search/:movieId/trailer',
+  authController.protect,
+  moviesController.getMovieTrailer
+);
+router.get(
+  '/search/:movieId/details',
+  authController.protect,
+  moviesController.movieDetails
+);
 
 module.exports = router;

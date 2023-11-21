@@ -39,12 +39,13 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
   const newFavorite = await Favorites.findOne({ user: userId });
 
   if (newFavorite) {
-    // if it exists update the existing Favorites document by pushing the new TV show to the tvShows array
+    // if it exists update the existing Favorites document by pushing the new movie to the movies array
     newFavorite.movies.push(...movie);
 
     // Save the changes
     const updatedFavorites = await newFavorite.save();
 
+    //make the tv shows array undefiend so it won't be showed in the results
     updatedFavorites.tvShows = undefined;
     res.status(200).json({
       status: 'movie added to the favorite list',
@@ -139,6 +140,7 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteMovieFromFavorite = catchAsync(async (req, res, next) => {
+  //get the movie title from the body
   const movieTitle = req.body.movieTitle;
   if (!movieTitle) {
     return next(
@@ -155,6 +157,7 @@ exports.deleteMovieFromFavorite = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteShowFromFavorite = catchAsync(async (req, res, next) => {
+  //get the tv show title from the body
   const tvShowTitle = req.body.tvShow;
   if (!tvShowTitle) {
     return next(
@@ -172,7 +175,9 @@ exports.deleteShowFromFavorite = catchAsync(async (req, res, next) => {
 });
 
 exports.getFavorites = catchAsync(async (req, res, next) => {
-  const favorites = await Favorites.findOne({ user: req.user.id }).populate(
+  //get the user_id form protect
+  const user_id = req.user.id;
+  const favorites = await Favorites.findOne({ user: user_id }).populate(
     'user',
     'name'
   );
