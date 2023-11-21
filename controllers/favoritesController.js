@@ -7,19 +7,23 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
   //get req.user from the protect middleware
   const userId = req.user.id;
 
-  //get the movie title from body
+  //get the movie title  and year from body
   const moviesTitle = req.body.movieTitle;
+  const year = req.body.year;
 
-  if (!moviesTitle) {
+  if (!moviesTitle & !year) {
     return next(
-      new AppError(400, 'please enter the title of the movie you want to add.')
+      new AppError(
+        400,
+        'please enter the title and the year of the movie you want to add.'
+      )
     );
   }
 
   //fetch the movie data from the external api
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/search/movie?query=${moviesTitle}&include_adult=false&language=en-US`,
+    url: `https://api.themoviedb.org/3/search/movie?query=${moviesTitle}&include_adult=false&language=en-US&year=${year}`,
     headers: {
       accept: 'application/json',
       Authorization:
@@ -29,7 +33,7 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
 
   const response = await axios.request(options);
 
-  const movie = response.data.results;
+  const movie = response.data.results.slice(0, 1);
 
   // find the existing Favorites document for the user
   const newFavorite = await Favorites.findOne({ user: userId });
@@ -43,7 +47,7 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
 
     updatedFavorites.tvShows = undefined;
     res.status(200).json({
-      status: 'tv show added to the favorite list',
+      status: 'movie added to the favorite list',
       data: {
         updatedFavorites,
       },
@@ -73,6 +77,7 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
 
   //get the tv show title from the body
   const tvShowTitle = req.body.tvShowTitle;
+  const year = req.body.year;
   if (!tvShowTitle) {
     return next(
       new AppError(
@@ -85,7 +90,7 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
   //fetch tv show data from the external api
   const options = {
     method: 'GET',
-    url: `https://api.themoviedb.org/3/search/tv?query=${tvShowTitle}&include_adult=false&language=en-US&`,
+    url: `https://api.themoviedb.org/3/search/tv?query=${tvShowTitle}&include_adult=false&language=en-US&${year}`,
     headers: {
       accept: 'application/json',
       Authorization:
@@ -95,7 +100,7 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
 
   const response = await axios.request(options);
 
-  const tvShow = response.data.results;
+  const tvShow = response.data.results.slice(0, 1);
 
   // find the existing Favorites document for the user
   const newFavorite = await Favorites.findOne({ user: userId });
