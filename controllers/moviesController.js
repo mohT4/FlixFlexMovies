@@ -1,5 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const axios = require('axios');
+const Favorites = require('../models/favorties');
+const AppError = require('../utils/AppError');
 
 //get all the popular movies in diffrent pages, with 10 results per page
 exports.getAllMovies = catchAsync(async (req, res, next) => {

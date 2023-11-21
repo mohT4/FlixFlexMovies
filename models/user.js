@@ -3,6 +3,7 @@ const joi = require('joi');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const AppError = require('../utils/AppError');
+const Favorites = require('./favorties');
 
 const userSchema = mongoose.Schema(
   {
@@ -17,7 +18,12 @@ const userSchema = mongoose.Schema(
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
+    Favorites: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Favorites',
+    },
   },
+
   { timestamps: true }
 );
 
@@ -58,6 +64,18 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.comparePassword = async function (currentPD, candiatePD) {
   return await bcrypt.compare(currentPD, candiatePD);
+};
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimestamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return changedTimestamp > JWTTimestamp;
+  }
+
+  return false;
 };
 
 userSchema.methods.createPasswordResetToken = function () {
