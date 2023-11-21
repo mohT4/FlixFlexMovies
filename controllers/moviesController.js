@@ -58,6 +58,7 @@ exports.getTopRated = catchAsync(async (req, res, next) => {
 
 //search for a movie by title
 exports.getMovies = catchAsync(async (req, res, next) => {
+  //get the movie title from query
   const movieTitle = req.query.name;
   const options = {
     method: 'GET',
@@ -76,6 +77,57 @@ exports.getMovies = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       movie: movie,
+    },
+  });
+});
+
+//get the movies trailer by id
+exports.getMovieTrailer = catchAsync(async (req, res, next) => {
+  //get the movie id from req.params
+  const movieId = req.params.movieId;
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+    },
+  };
+
+  const response = await axios.request(options);
+
+  const trailer = response.data;
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      trailer: trailer,
+    },
+  });
+});
+
+//get the movie details by id
+exports.movieDetails = catchAsync(async (req, res, next) => {
+  //get movi id from req.params
+  const movieId = req.params.movieId;
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+    },
+  };
+
+  const response = await axios.request(options);
+  const details = response.data;
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      details: details,
     },
   });
 });

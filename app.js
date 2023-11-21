@@ -16,8 +16,12 @@ const app = express();
 
 //global middlwares
 
+//body parser, reding data from body
 app.use(express.json());
+
+//devolepment loggin
 app.use(httplogger);
+logger.info(process.env.NODE_ENV);
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', moviesRouter);

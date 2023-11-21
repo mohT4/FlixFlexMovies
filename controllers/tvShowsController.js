@@ -54,7 +54,7 @@ exports.getTopTvShows = catchAsync(async (req, res, next) => {
   });
 });
 
-//search for a T byv show title
+//search for a Tv show by title
 exports.getTvShows = catchAsync(async (req, res, next) => {
   const tvTitle = req.query.name;
   const options = {
@@ -74,6 +74,54 @@ exports.getTvShows = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       tvShow: tvShow,
+    },
+  });
+});
+
+//get the tv show trailer by id
+exports.getTvShowTrailer = catchAsync(async (req, res, next) => {
+  const tvShowId = req.params.tvshowId;
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/tv/${tvShowId}/videos?language=en-US`,
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+    },
+  };
+
+  const response = await axios.request(options);
+  const trailer = response.data;
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      trailer: trailer,
+    },
+  });
+});
+
+//get the tv show datails by id
+exports.tvShowDetails = catchAsync(async (req, res, next) => {
+  const tvShowsId = req.params.tvShowsId;
+  const options = {
+    method: 'GET',
+    url: `https://api.themoviedb.org/3/tv/${tvShowsId}?language=en-US`,
+    headers: {
+      accept: 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+    },
+  };
+
+  const response = await axios.request(options);
+  const details = response.data;
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      details: details,
     },
   });
 });

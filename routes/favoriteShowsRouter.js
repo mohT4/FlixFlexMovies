@@ -7,6 +7,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .post(authController.protect, favoriteController.addTvShowToFavorite)
-  .get(authController.protect, favoriteController.getFavorites);
+  .get(authController.protect, favoriteController.getFavorites)
+  .delete(authController.protect, favoriteController.deleteShowFromFavorite);
 
 module.exports = router;
