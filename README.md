@@ -34,55 +34,71 @@ npm run dev
 ## Authentication
 Flix-flex provides a secure authentication system to manage user accounts. Users can perform the following actions:
 
--Sign Up: Create a new account.
--Log In: Access the API with their credentials.
--Forget Password: Easily reset their password.
+- Sign Up: Create a new account.
+- Log In: Access the API with their credentials.
+- Forget Password: Easily reset their password.
 
 ## EndPoints 
 1)Movie and Series Listing
 
 ## view all movies and series 
--Endpoints: /api/v1/movies , /api/v1/tvshows.
--Method: GET.
+- Endpoints: /api/v1/movies , /api/v1/tvshows.
+  
+- Method: GET.
+  
 -Description: Retrieve the list of all available movies and series.
 
 ## Top 5 Rated Movies and Series:
 -Endpoint: /api/v1/movies/top5rated, /api/v1/tvshows/top5tvshows.
+
 -Method: GET.
+
 -Description: Get the top 5 rated movies and series.
 
 2)Favorites List 
 
 ## Add to Favorites:
 -Endpoint: /api/v1/movies/favorites , /api/v1/tvshows/favorites.
+
 -Method: POST.
+
 -Description: Add a movie or series to the user's favorites list.
 
 ## Remove from Favorites:
 -Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
+
 -Method: DELETE.
+
 -Description: Delete a movie or series from the user's favorites list.
 
 ## View Favorites List:
 -Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
+
 -Method: GET.
+
 -Description: View the list of favorite movies and series.
 
-Search
+3)Search
 
 ## Search Movies and Series:
 -Endpoint: api/v1/movies/search, /api/v1/tvshows/search.
+
 -Method: GET.
+
 -Description: Search for movies and series.
 
 ## Search Movie and Series Details:
 -Endpoint: api/v1/movies/search/:movieId/details, /api/v1/tvshows/search/:tvshowId/details.
+
 -Method: GET.
+
 -Description: Search for details of a specific movie or series.
 
 ## Search Movie and Series Trailers:
 -Endpoint: api/v1/movies/search/:movieId/trailer, /api/v1/tvshows/search/:tvshowId/trailer.
+
 -Method: GET.
+
 -Description: Search for the trailer of a specific movie or series.
 
 ## Usage
