@@ -25,6 +25,12 @@ logger.info(process.env.NODE_ENV);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', moviesRouter);
 app.use('/api/v1/tvshows', tvShowesRouter);
+app.use('/', (req, res) => {
+  res.json({
+    staus: 'success',
+    message: 'welcom to flix flex web app',
+  });
+});
 
 app.use('*', (req, res, next) => {
   next(new AppError(400, `can't find ${req.originalUrl}`));
