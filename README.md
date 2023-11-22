@@ -102,10 +102,3 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
 
 - Description: Search for the trailer of a specific movie or series.
 
-## Usage
-The usage of the flix-flex API is thoroughly documented in Postman and Swagger.
-
-Swagger: http://host:port/api .
-
-[Postman Workspace] (https://app.getpostman.com/join-team?invite_code=6e01b033d57047b7c8f4a7f96301a7f2&target_code=3287c5b03914cb811e63f88b94678c2a)
-
