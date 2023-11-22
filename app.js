@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
 
 const AppError = require('./utils/AppError');
 const globallErrorHandler = require('./middlewares/erroHandler');
@@ -17,6 +18,7 @@ const app = express();
 
 //body parser, reding data from body
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
 //devolepment loggin
 app.use(httplogger);
@@ -25,8 +27,8 @@ logger.info(process.env.NODE_ENV);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', moviesRouter);
 app.use('/api/v1/tvshows', tvShowesRouter);
-app.use('/', (req, res) => {
-  res.status(200).send('./index.html');
+app.get('/', (req, res) => {
+  res.status(200).render('./public/index.html');
 });
 
 app.use('*', (req, res, next) => {
