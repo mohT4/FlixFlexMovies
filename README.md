@@ -46,60 +46,60 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
   
 - Method: GET.
   
--Description: Retrieve the list of all available movies and series.
+- Description: Retrieve the list of all available movies and series.
 
 ## Top 5 Rated Movies and Series:
--Endpoint: /api/v1/movies/top5rated, /api/v1/tvshows/top5tvshows.
+- Endpoint: /api/v1/movies/top5rated, /api/v1/tvshows/top5tvshows.
 
--Method: GET.
+- Method: GET.
 
--Description: Get the top 5 rated movies and series.
+- Description: Get the top 5 rated movies and series.
 
 2)Favorites List 
 
 ## Add to Favorites:
--Endpoint: /api/v1/movies/favorites , /api/v1/tvshows/favorites.
+- Endpoint: /api/v1/movies/favorites , /api/v1/tvshows/favorites.
 
--Method: POST.
+- Method: POST.
 
--Description: Add a movie or series to the user's favorites list.
+- Description: Add a movie or series to the user's favorites list.
 
 ## Remove from Favorites:
--Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
+- Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
 
--Method: DELETE.
+- Method: DELETE.
 
--Description: Delete a movie or series from the user's favorites list.
+- Description: Delete a movie or series from the user's favorites list.
 
 ## View Favorites List:
--Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
+- Endpoint: /api/v1/movies/favorites, /api/v1/tvshows/favorites.
 
--Method: GET.
+- Method: GET.
 
--Description: View the list of favorite movies and series.
+- Description: View the list of favorite movies and series.
 
 3)Search
 
 ## Search Movies and Series:
--Endpoint: api/v1/movies/search, /api/v1/tvshows/search.
+- Endpoint: api/v1/movies/search, /api/v1/tvshows/search.
 
--Method: GET.
+- Method: GET.
 
--Description: Search for movies and series.
+- Description: Search for movies and series.
 
 ## Search Movie and Series Details:
--Endpoint: api/v1/movies/search/:movieId/details, /api/v1/tvshows/search/:tvshowId/details.
+- Endpoint: api/v1/movies/search/:movieId/details, /api/v1/tvshows/search/:tvshowId/details.
 
--Method: GET.
+- Method: GET.
 
--Description: Search for details of a specific movie or series.
+- Description: Search for details of a specific movie or series.
 
 ## Search Movie and Series Trailers:
--Endpoint: api/v1/movies/search/:movieId/trailer, /api/v1/tvshows/search/:tvshowId/trailer.
+- Endpoint: api/v1/movies/search/:movieId/trailer, /api/v1/tvshows/search/:tvshowId/trailer.
 
--Method: GET.
+- Method: GET.
 
--Description: Search for the trailer of a specific movie or series.
+- Description: Search for the trailer of a specific movie or series.
 
 ## Usage
 The usage of the flix-flex API is thoroughly documented in Postman and Swagger.
