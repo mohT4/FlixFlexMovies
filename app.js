@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const AppError = require('./utils/AppError');
@@ -32,14 +31,4 @@ app.use('*', (req, res, next) => {
 });
 app.use(globallErrorHandler);
 
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
-);
-
-mongoose.connect(DB).then(() => logger.info('DATABASE CONNECTED...'));
-
-const port = process.env.PORT || 6000;
-app.listen(port, () => {
-  logger.info(`listening on port ${port}`);
-});
+module.exports = app;

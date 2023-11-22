@@ -1,11 +1,20 @@
-const buildDevlogger = require('./devLogger');
-const buildProdLogger = require('./prodLogger');
+const winston = require('winston');
 
-let logger;
-if (process.env.NODE_ENV === 'development') {
-  logger = buildDevlogger();
-} else if (process.env.NODE_ENV === 'production') {
-  logger = buildProdLogger();
+function devLogger() {
+  const formatLoger = winston.format.printf(({ level, message, timestamp }) => {
+    return `${timestamp} ${level}:  ${message}`;
+  });
+  return winston.createLogger({
+    level: 'debug',
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.timestamp({ format: 'YYYY-MM-DD HH:MM:SS' }),
+      winston.format.errors({ stack: true }),
+      formatLoger
+    ),
+    transports: [new winston.transports.Console()],
+  });
 }
 
+const logger = devLogger();
 module.exports = logger;

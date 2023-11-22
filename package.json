@@ -4,7 +4,8 @@
   "description": "Creation of the backend of a movie app flix flex",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js"
   },
   "author": "",
   "license": "ISC",

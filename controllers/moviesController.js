@@ -58,7 +58,7 @@ exports.getTopRated = catchAsync(async (req, res, next) => {
 
 //search for a movie by title
 exports.getMovies = catchAsync(async (req, res, next) => {
-  //get the movie title from query
+  //get the movie title  and year from query
   const movieTitle = req.query.name;
   const year = req.query.year;
 
