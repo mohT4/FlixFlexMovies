@@ -38,9 +38,9 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
 - Log In: Access the API with their credentials.
 - Forget Password: Easily reset their password.
 
-## EndPoints 
+# EndPoints 
 
-- 1) Movie and Series Listing
+## 1) Movie and Series Listing
 
 ## view all movies and series 
 - Endpoints: /api/v1/movies , /api/v1/tvshows.
@@ -56,7 +56,7 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
 
 - Description: Get the top 5 rated movies and series.
 
-- 2) Favorites List 
+  ## 2) Favorites List 
 
 ## Add to Favorites:
 - Endpoint: /api/v1/movies/favorites , /api/v1/tvshows/favorites.
@@ -79,7 +79,7 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
 
 - Description: View the list of favorite movies and series.
 
-- 3) Search
+## 3) Search
 
 ## Search Movies and Series:
 - Endpoint: api/v1/movies/search, /api/v1/tvshows/search.
