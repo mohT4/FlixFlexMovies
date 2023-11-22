@@ -10,8 +10,7 @@ exports.getAllTvShows = catchAsync(async (req, res, next) => {
     url: 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -37,8 +36,7 @@ exports.getTopTvShows = catchAsync(async (req, res, next) => {
     url: 'https://api.themoviedb.org/3/tv/top_rated?language=en-US',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -65,8 +63,7 @@ exports.getTvShows = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/search/tv?query=${tvTitle}&include_adult=false&language=en-US&yea=${year}`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -89,8 +86,7 @@ exports.getTvShowTrailer = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/tv/${tvShowId}/videos?language=en-US`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -113,8 +109,7 @@ exports.tvShowDetails = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/tv/${tvShowsId}?language=en-US`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 

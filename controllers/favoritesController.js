@@ -8,7 +8,7 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
   const userId = req.user.id;
 
   //get the movie title  and year from body
-  const moviesTitle = req.body.movieTitle;
+  const moviesTitle = req.body.movie_title;
   const year = req.body.year;
 
   if (!moviesTitle & !year) {
@@ -26,8 +26,7 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/search/movie?query=${moviesTitle}&include_adult=false&language=en-US&year=${year}`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -57,11 +56,11 @@ exports.addMovieToFavorite = catchAsync(async (req, res, next) => {
     // If no existing Favorites document is found, create a new one
     const newFavorites = new Favorites({
       user: userId,
-      movie: movie,
+      movies: movie,
     });
 
     const savedFavorites = await newFavorites.save();
-    savedFavorites.movies = undefined;
+    savedFavorites.tvShows = undefined;
 
     res.status(200).json({
       status: 'movie added to the favorite list',
@@ -76,14 +75,14 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
   //we get req.user from the protect middleware
   const userId = req.user.id;
 
-  //get the tv show title from the body
-  const tvShowTitle = req.body.tvShowTitle;
+  //get the tv show title and the year from the body
+  const tvShowTitle = req.body.tvshow_title;
   const year = req.body.year;
-  if (!tvShowTitle) {
+  if (!tvShowTitle & !year) {
     return next(
       new AppError(
         400,
-        'please enter the title of the tv Show you want to add.'
+        'please enter the title and the year of the tv Show you want to add.'
       )
     );
   }
@@ -94,8 +93,7 @@ exports.addTvShowToFavorite = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/search/tv?query=${tvShowTitle}&include_adult=false&language=en-US&${year}`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 

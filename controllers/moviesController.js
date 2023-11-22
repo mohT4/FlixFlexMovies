@@ -12,8 +12,7 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}&limit=10`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -39,8 +38,7 @@ exports.getTopRated = catchAsync(async (req, res, next) => {
     url: 'https://api.themoviedb.org/3/movie/top_rated?language=en-US',
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -67,8 +65,7 @@ exports.getMovies = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US&year=${year}`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -92,8 +89,7 @@ exports.getMovieTrailer = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
@@ -118,8 +114,7 @@ exports.movieDetails = catchAsync(async (req, res, next) => {
     url: `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhODFmOTI1YjNjOTc0MjI5MjMwYmQ4YjA2MzMwMDgzYyIsInN1YiI6IjY1NWE0ZWUxYjU0MDAyMTRkMTE4MDcwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wjFn97ypnIqva3t_VFOxG3al2_ohBqC27C4MGrlc7SI',
+      Authorization: process.env.TMB_JWT,
     },
   };
 
