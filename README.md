@@ -39,7 +39,7 @@ Flix-flex provides a secure authentication system to manage user accounts. Users
 - Forget Password: Easily reset their password.
 
 ## EndPoints 
-1)Movie and Series Listing
+1) Movie and Series Listing
 
 ## view all movies and series 
 - Endpoints: /api/v1/movies , /api/v1/tvshows.
