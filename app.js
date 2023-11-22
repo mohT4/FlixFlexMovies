@@ -26,10 +26,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', moviesRouter);
 app.use('/api/v1/tvshows', tvShowesRouter);
 app.use('/', (req, res) => {
-  res.json({
-    staus: 'success',
-    message: 'welcom to flix flex web app',
-  });
+  res.status(200).send('./index.html');
 });
 
 app.use('*', (req, res, next) => {
