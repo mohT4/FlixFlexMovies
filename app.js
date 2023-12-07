@@ -1,17 +1,17 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const path = require('path');
 
 const AppError = require('./utils/AppError');
 const globallErrorHandler = require('./middlewares/erroHandler');
 const httplogger = require('./middlewares/logger/httpLogger');
 const logger = require('./middlewares/logger/logger');
-
+const path = require('path');
 const userRouter = require('./routes/userRouter');
 const moviesRouter = require('./routes/moviesRouter');
 const tvShowesRouter = require('./routes/tvShowesRouter');
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+dotenv.config({ path: path.join(__dirname, envFile) });
 const app = express();
 
 //global middlwares
