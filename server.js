@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const app = require('./app');
 const logger = require('./middlewares/logger/logger');
-
-dotenv.config();
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
@@ -31,3 +28,4 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+module.exports = server;
